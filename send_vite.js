@@ -53,6 +53,7 @@ const ViteAPI = new vite.ViteAPI(provider, async () => {
         }
     }
     console.log("Using "+address.address+" as sender !")
+    await new Promise((r) => setImmediate(r))
     const actions = {
         send: async (tokenId, amount, destination) => {
             if(

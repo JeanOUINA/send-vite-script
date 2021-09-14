@@ -45,6 +45,7 @@ const ViteAPI = new vite.ViteAPI(provider, () => {
         }
     }
     console.log("Using "+address.address)
+    await new Promise((r) => setImmediate(r))
 
     const server = http.createServer(async (req, res) => {
         if(req.headers.authorization !== config.API_KEY){
