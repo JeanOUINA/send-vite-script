@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const vite = require("vitejs-notthomiz")
 const HTTP_RPC = require("vitejs-notthomiz-http").default
 const WS_RPC = require("vitejs-notthomiz-ws").default
