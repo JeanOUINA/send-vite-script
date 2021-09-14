@@ -1,7 +1,7 @@
 const vite = require("vitejs-notthomiz")
 const HTTP_RPC = require("vitejs-notthomiz-http").default
 const WS_RPC = require("vitejs-notthomiz-ws").default
-const config = require("./config.example.json")
+const config = require("./config.json")
 const BigNumber = require("bignumber.js").default
 
 const [,,
