@@ -1,0 +1,10 @@
+{
+    "API_KEY": "Your api key",
+    "VITE_LOGIN": {
+        "type": "mnemonic",
+        "index": 0,
+        "credentials": "spare lawn border inner they genre ethics tide curious wire bus bike need leave decrease focus pepper lamp use recall black faint brisk tent"
+    },
+    "VITE_NODE": "wss://vitanode.lightcord.org/ws",
+    "PORT": 1337
+}
