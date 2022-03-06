@@ -23,7 +23,7 @@ And then, edit your config.json.
     },
     // The RPC node you're going to use
     // Websockets and Https nodes are supported
-    "VITE_NODE": "https://vitanode.lightcord.org/http",
+    "VITE_NODE": "https://node-vite.thomiz.dev/",
     // the port of the server
     // Only for server
     "PORT": 1337
