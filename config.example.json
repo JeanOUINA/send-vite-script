@@ -5,6 +5,6 @@
         "index": 0,
         "credentials": "spare lawn border inner they genre ethics tide curious wire bus bike need leave decrease focus pepper lamp use recall black faint brisk tent"
     },
-    "VITE_NODE": "wss://vitanode.lightcord.org/ws",
+    "VITE_NODE": "wss://node-vite.thomiz.dev/ws",
     "PORT": 1337
 }
