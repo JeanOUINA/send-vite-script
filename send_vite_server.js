@@ -21,7 +21,7 @@ const provider = /^wss?:$/.test(url.protocol) ?
     new Error("Invalid node url: "+config.VITE_NODE)
 if(provider instanceof Error)throw provider
 console.log("Connecting to "+config.VITE_NODE)
-const ViteAPI = new vite.ViteAPI(provider, () => {
+const ViteAPI = new vite.ViteAPI(provider, async () => {
     console.log("Provider ready !")
     console.log("Starting server")
     let address
@@ -60,7 +60,7 @@ const ViteAPI = new vite.ViteAPI(provider, () => {
 
         let body = {}
         try{
-            body = await new Promise<any>((resolve, reject) => {
+            body = await new Promise((resolve, reject) => {
                 let data = "";
                 req.on("data", chunk => {
                     data += chunk
@@ -91,7 +91,7 @@ const ViteAPI = new vite.ViteAPI(provider, () => {
                 }))
             }
             const action = actions[body.action]
-            const [statusCode, resp] = await action(body.params)
+            const [statusCode, resp] = await action(...body.params)
             res.writeHead(statusCode)
             res.end(JSON.stringify(resp))
         }catch(err){
@@ -108,7 +108,7 @@ const ViteAPI = new vite.ViteAPI(provider, () => {
         }
     })
     
-    server.listen(config.PORT, "[::1]", () => {
+    server.listen(config.PORT, "::1", () => {
         console.log("Listening on http://[::1]:"+config.PORT)
     })
 
@@ -147,15 +147,15 @@ const ViteAPI = new vite.ViteAPI(provider, () => {
                         tokenId: tokenId,
                         amount: amount
                     })
-                    accountBlock.setProvider(provider)
+                    accountBlock.setProvider(ViteAPI)
                     .setPrivateKey(address.privateKey)
                     const [
                         quota,
                         difficulty
                     ] = await Promise.all([
-                        wsProvider.request("contract_getQuotaByAccount", address.address),
+                        ViteAPI.request("contract_getQuotaByAccount", address.address),
                         accountBlock.autoSetPreviousAccountBlock()
-                        .then(() => wsProvider.request("ledger_getPoWDifficulty", {
+                        .then(() => ViteAPI.request("ledger_getPoWDifficulty", {
                             address: accountBlock.address,
                             previousHash: accountBlock.previousHash,
                             blockType: accountBlock.blockType,
